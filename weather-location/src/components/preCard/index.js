@@ -1,5 +1,6 @@
 import React, { Fragment } from "react"
 import Card from 'react-bootstrap/Card'
+import './style.css'
 
 function PreCard(params) {
     return (

@@ -1,0 +1,51 @@
+.principal-card {
+    text-align: center;
+    color: white;
+    width: auto;
+    height: auto;
+    background: rgba(255, 255, 255, 0);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(9px);
+    -webkit-backdrop-filter: blur(9px);
+}
+
+.icon-cloud {
+    width: 50px;
+}
+
+.icon-actual {
+    width: 30px;
+}
+
+.list-info {
+    border-radius: 16px;
+    text-align: center;
+    font-size: 15px;
+}
+
+.list-info2 {
+    border: none;
+    font-size: 13px;
+}
+
+button {
+    padding: 0;
+    border: none;
+    background: none;
+}
+
+.footer {
+    margin-top: 2rem;
+    font-size: 12px;
+}
+
+a {
+    color: white;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #333;
+    transition: 0.1s;
+}

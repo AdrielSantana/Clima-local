@@ -4,8 +4,8 @@ import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Container from 'react-bootstrap/Container';
 
-import PrincipalCard from './components/PrincipalCard';
-import PreCard from './components/PreCard';
+import PrincipalCard from './components/principalCard';
+import PreCard from './components/preCard';
 
 import './App.css';
 
@@ -54,7 +54,7 @@ function App() {
     let text = 'Permita a localização no navegador'
     return (
       <Fragment>
-        <Container fluid className='d-flex  background' style={{ backgroundImage: `url(background_images/${whichBackground()}.jpg)` }}>
+        <Container fluid className='d-flex  background' style={{ backgroundImage: `url(Clima-local/assets/background_images/${whichBackground()}.jpg)` }}>
           <PreCard
             text={text}
           />
@@ -64,8 +64,8 @@ function App() {
   } else if (!weather) {
     return (
       <Fragment>
-        <Container fluid className='d-flex justify-content-center  background' style={{ backgroundImage: `url(background_images/${whichBackground()}.jpg)` }}>
-          <img className='loading align-self-center' src="./loading.gif" alt='loading'/>
+        <Container fluid className='d-flex justify-content-center  background' style={{ backgroundImage: `url(Clima-local/assets/background_images/${whichBackground()}.jpg)` }}>
+          <img className='loading align-self-center' src="./Clima-local/loading.gif" alt='loading'/>
         </Container>
       </Fragment>
     )
@@ -85,9 +85,9 @@ function App() {
 
     return (
       <Fragment>
-        <Container fluid className='d-flex background' style={{ backgroundImage: `url(background_images/${whichBackground(actualMain)}.jpg)` }}>
+        <Container fluid className='d-flex background' style={{ backgroundImage: `url(Clima-local/assets/background_images/${whichBackground(actualMain)}.jpg)` }}>
           <PrincipalCard
-            main={actualMain}
+            main={whichBackground(actualMain)}
             cityName={cityName}
             mesureDate={mesureDate}
             description={description}
