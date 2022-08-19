@@ -1,38 +1,82 @@
-.App {
-  text-align: center;
+.background {
+  background-repeat: no-repeat;
+  background-position: right;
+  background-size: cover;
+  width: auto;
+  height: 100vh;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+.message-card {
   color: white;
+  width: auto;
+  height: auto;
+  background: rgba(40, 40, 40, 0.37);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(3.9px);
+  -webkit-backdrop-filter: blur(3.9px);
 }
 
-.App-link {
-  color: #61dafb;
+.loading {
+  width: 100px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.principal-card {
+  text-align: center;
+  color: white;
+  width: auto;
+  height: auto;
+  background: rgba(255, 255, 255, 0);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(9px);
+  -webkit-backdrop-filter: blur(9px);
+}
+
+.icon-cloud {
+  width: 50px;
+}
+
+.icon-location {
+  width: 20px;
+}
+
+.icon-clock {
+  width: 20px;
+}
+
+.icon-actual {
+  width: 30px;
+}
+
+.list-info {
+  border-radius: 16px;
+  text-align: center;
+  font-size: 15px;
+}
+
+.list-info2 {
+  border: none;
+  font-size: 13px;
+}
+
+button {
+  padding: 0;
+  border: none;
+  background: none;
+}
+
+.footer{
+  margin-top: 2rem;
+  font-size: 12px;
+}
+
+a{
+  color: white;
+  text-decoration: none;
+}
+
+a:hover{
+  color: #333;
+  transition: 0.1s;
 }

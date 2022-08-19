@@ -1,6 +1,12 @@
 import React, { Fragment, useState, useEffect } from 'react';
 import axios from 'axios';
 
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Container from 'react-bootstrap/Container';
+
+import PrincipalCard from './components/PrincipalCard';
+import PreCard from './components/PreCard';
+
 import './App.css';
 
 function App() {
@@ -8,8 +14,9 @@ function App() {
   const [weather, setWeather] = useState(false)
 
   let getWeather = async (lat, long) => {
-    let res = await axios.get("https://pro.openweathermap.org/data/2.5/forecast", {
+    let res = await axios.get("https://api.openweathermap.org/data/2.5/forecast", {
       params: {
+        cnt: 1,
         lat: lat,
         lon: long,
         appid: process.env.REACT_APP_OPEN_WEATHER_KEY,
@@ -18,7 +25,6 @@ function App() {
       }
     })
     setWeather(res.data)
-    console.log(res.data)
   }
 
   useEffect(() => {
@@ -28,37 +34,72 @@ function App() {
     })
   }, [])
 
+  const whichBackground = (actualWeather) => {
+    let background = 'atmosfera'
+
+    if ((actualWeather === 'Rain') || (actualWeather === 'Drizzle')) {
+      background = 'chuvoso'
+    } else if (actualWeather === 'Snow') {
+      background = 'nevando'
+    } else if (actualWeather === 'Clouds') {
+      background = 'nublado'
+    } else if (actualWeather === 'Clear') {
+      background = 'ensolarado'
+    }
+
+    return background
+  }
+
   if (!location) {
+    let text = 'Permita a localização no navegador'
     return (
       <Fragment>
-        Permita a localização do navegador
+        <Container fluid className='d-flex  background' style={{ backgroundImage: `url(background_images/${whichBackground()}.jpg)` }}>
+          <PreCard
+            text={text}
+          />
+        </Container>
       </Fragment>
     )
-  } else if (weather === false) {
+  } else if (!weather) {
     return (
       <Fragment>
-        Carregando o Clima...
+        <Container fluid className='d-flex justify-content-center  background' style={{ backgroundImage: `url(background_images/${whichBackground()}.jpg)` }}>
+          <img className='loading align-self-center' src="./loading.gif" alt='loading'/>
+        </Container>
       </Fragment>
     )
   } else {
-    let windVelocityKH = weather['list'][0]['wind']['speed'] * 3.6
+    let cityName = weather['city']['name']
+    let mesureDate = weather['list'][0]['dt_txt']
+    let description = weather['list'][0]['weather'][0]['description']
+    let actualMain = weather['list'][0]['weather'][0]['main']
+
+    let actualTemp = Math.round(weather['list'][0]['main']['temp'])
+    let sensationTemp = Math.round(weather['list'][0]['main']['feels_like'])
+    let maxTemp = Math.round(weather['list'][0]['main']['temp_max'])
+    let minTemp = Math.round(weather['list'][0]['main']['temp_min'])
+    let pressure = weather['list'][0]['main']['pressure']
+    let humidity = weather['list'][0]['main']['humidity']
+    let windVelocityKH = Math.round(weather['list'][0]['wind']['speed'] * 3.6)
 
     return (
       <Fragment>
-        <h3>Clima nas suas Coordenadas</h3>
-        <h3>Cidade: {weather['city']['name']}</h3>
-        <h3>Data da medição: {weather['list'][0]['dt_txt']}</h3>
-        <h3>({weather['list'][0]['weather'][0]['description']})</h3>
-        <hr />
-        <ul>
-          <li>Temperatura atual: {weather['list'][0]['main']['temp']}°</li>
-          <li>Sensação Térmica: {weather['list'][0]['main']['feels_like']}°</li>
-          <li>Temperatura máxima: {weather['list'][0]['main']['temp_max']}°</li>
-          <li>Temperatura mínima: {weather['list'][0]['main']['temp_min']}°</li>
-          <li>Pressão: {weather['list'][0]['main']['pressure']} hpa</li>
-          <li>Umidade: {weather['list'][0]['main']['humidity']}%</li>
-          <li>Velocidade do vento: {windVelocityKH} km/h</li>
-        </ul>
+        <Container fluid className='d-flex background' style={{ backgroundImage: `url(background_images/${whichBackground(actualMain)}.jpg)` }}>
+          <PrincipalCard
+            main={actualMain}
+            cityName={cityName}
+            mesureDate={mesureDate}
+            description={description}
+            actualTemp={actualTemp}
+            sensationTemp={sensationTemp}
+            maxTemp={maxTemp}
+            minTemp={minTemp}
+            pressure={pressure}
+            humidity={humidity}
+            windVelocityKH={windVelocityKH}
+          />
+        </Container>
       </Fragment>
     );
   }
