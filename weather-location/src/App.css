@@ -3,7 +3,7 @@
   background-position: right;
   background-size: cover;
   width: auto;
-  height: 100vh;
+  min-height: 100vh;
 }
 
 .loading {

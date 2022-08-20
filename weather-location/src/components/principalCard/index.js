@@ -94,7 +94,6 @@ function PrincipalCard(params) {
                     </ListGroup>
                     <Container className="justify-content-evenly d-flex">
                         {fiveForecasts.map((forecast, index) => {
-                            console.log(fiveForecasts)
                             let description = forecast['weather'][0]['description']
                             let icon = forecast['weather'][0]['main']
                             let actualTemp = Math.round(forecast['main']['temp'])
