@@ -78,7 +78,7 @@ function App() {
     let text = 'Permita a localização no navegador'
     return (
       <Fragment>
-        <Container fluid className='d-flex  background' style={{ backgroundImage: `url(Clima-local/assets/background_images/${whichTime()}.jpg)` }}>
+        <Container fluid className='d-flex  background' style={{ backgroundImage: `url(/assets/background_images/${whichTime()}.jpg)` }}>
           <PreCard
             text={text}
           />
@@ -88,8 +88,8 @@ function App() {
   } else if (!weather) {
     return (
       <Fragment>
-        <Container fluid className='d-flex justify-content-center  background' style={{ backgroundImage: `url(Clima-local/assets/background_images/${whichTime()}.jpg)` }}>
-          <img className='loading align-self-center' src="./Clima-local/loading.gif" alt='loading' />
+        <Container fluid className='d-flex justify-content-center  background' style={{ backgroundImage: `url(/assets/background_images/${whichTime()}.jpg)` }}>
+          <img className='loading align-self-center' src=".//loading.gif" alt='loading' />
         </Container>
       </Fragment>
     )
@@ -109,7 +109,7 @@ function App() {
 
     return (
       <Fragment>
-        <Container fluid className='d-flex background' style={{ backgroundImage: `url(Clima-local/assets/background_images/${whichBackground(hour, whichTime(actualMain))}.jpg)` }}>
+        <Container fluid className='d-flex background' style={{ backgroundImage: `url(/assets/background_images/${whichBackground(hour, whichTime(actualMain))}.jpg)` }}>
           <PrincipalCard
             day={day}
             hour={hour}
