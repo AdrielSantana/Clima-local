@@ -14,9 +14,8 @@ function App() {
   const [weather, setWeather] = useState(false)
 
   let getWeather = async (lat, long) => {
-    let res = await axios.get("https://api.openweathermap.org/data/2.5/forecast", {
+    let res = await axios.get("https://api.openweathermap.org/data/2.5/weather", {
       params: {
-        cnt: 1,
         lat: lat,
         lon: long,
         appid: process.env.REACT_APP_OPEN_WEATHER_KEY,
@@ -105,18 +104,18 @@ function App() {
       </Fragment>
     )
   } else {
-    let cityName = weather['city']['name']
-    let mesureDate = weather['list'][0]['dt_txt']
-    let description = weather['list'][0]['weather'][0]['description']
-    let actualMain = weather['list'][0]['weather'][0]['main']
+    //let mesureDate = forecast['list]['dt_txt']
+    let cityName = weather['name']
+    let description = weather['weather'][0]['description']
+    let actualMain = weather['weather'][0]['main']
 
-    let actualTemp = Math.round(weather['list'][0]['main']['temp'])
-    let sensationTemp = Math.round(weather['list'][0]['main']['feels_like'])
-    let maxTemp = Math.round(weather['list'][0]['main']['temp_max'])
-    let minTemp = Math.round(weather['list'][0]['main']['temp_min'])
-    let pressure = weather['list'][0]['main']['pressure']
-    let humidity = weather['list'][0]['main']['humidity']
-    let windVelocityKH = Math.round(weather['list'][0]['wind']['speed'] * 3.6)
+    let actualTemp = Math.round(weather['main']['temp'])
+    let sensationTemp = Math.round(weather['main']['feels_like'])
+    let maxTemp = Math.round(weather['main']['temp_max'])
+    let minTemp = Math.round(weather['main']['temp_min'])
+    let pressure = weather['main']['pressure']
+    let humidity = weather['main']['humidity']
+    let windVelocityKH = Math.round(weather['wind']['speed'] * 3.6)
 
     return (
       <Fragment>
@@ -127,7 +126,6 @@ function App() {
             minutes={minutes}
             main={whichTime(actualMain)}
             cityName={cityName}
-            mesureDate={mesureDate}
             description={description}
             actualTemp={actualTemp}
             sensationTemp={sensationTemp}
