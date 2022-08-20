@@ -89,7 +89,7 @@ function App() {
     return (
       <Fragment>
         <Container fluid className='d-flex justify-content-center  background' style={{ backgroundImage: `url(/Clima-local/assets/background_images/${whichTime()}.jpg)` }}>
-          <img className='loading align-self-center' src=".//loading.gif" alt='loading' />
+          <img className='loading align-self-center' src="./Clima-local/loading.gif" alt='loading' />
         </Container>
       </Fragment>
     )
