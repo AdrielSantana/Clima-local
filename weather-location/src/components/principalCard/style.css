@@ -22,6 +22,7 @@
     border-radius: 16px;
     text-align: center;
     font-size: 15px;
+    margin-bottom: 1em;
 }
 
 .list-info2 {
@@ -36,7 +37,7 @@ button {
 }
 
 .footer {
-    margin-top: 2rem;
+    margin-top: 1rem;
     font-size: 12px;
 }
 

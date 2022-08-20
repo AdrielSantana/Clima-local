@@ -12,6 +12,7 @@ import './App.css';
 function App() {
   const [location, setLocation] = useState(false)
   const [weather, setWeather] = useState(false)
+  const [forecast, setForecast] = useState(false)
 
   let getWeather = async (lat, long) => {
     let res = await axios.get("https://api.openweathermap.org/data/2.5/weather", {
@@ -26,12 +27,27 @@ function App() {
     setWeather(res.data)
   }
 
+  let getForecast = async (lat, long) => {
+    let res = await axios.get("https://api.openweathermap.org/data/2.5/forecast", {
+      params: {
+        lat: lat,
+        lon: long,
+        appid: process.env.REACT_APP_OPEN_WEATHER_KEY,
+        lang: 'pt',
+        units: 'metric'
+      }
+    })
+    setForecast(res.data)
+  }
+
   useEffect(() => {
     navigator.geolocation.getCurrentPosition((position) => {
       getWeather(position.coords.latitude, position.coords.longitude)
+      getForecast(position.coords.latitude, position.coords.longitude)
       setLocation(true)
     })
   }, [])
+
 
   const whichTime = (actualWeather) => {
     let background = 'atmosfera'
@@ -72,6 +88,7 @@ function App() {
 
   const now = new Date()
 
+  let date = now.getDate()
   let day = now.getDay()
   let hour = now.getHours()
   let minutes = now.getMinutes()
@@ -95,16 +112,15 @@ function App() {
         </Container>
       </Fragment>
     )
-  } else if (!weather) {
+  } else if (!weather && !forecast) {
     return (
       <Fragment>
         <Container fluid className='d-flex justify-content-center  background' style={{ backgroundImage: `url(/Clima-local/assets/background_images/${preBackgroud(hour)}.jpg)` }}>
-          <div class="loading lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+          <div className="loading lds-ellipsis"><div></div><div></div><div></div><div></div></div>
         </Container>
       </Fragment>
     )
   } else {
-    //let mesureDate = forecast['list]['dt_txt']
     let cityName = weather['name']
     let description = weather['weather'][0]['description']
     let actualMain = weather['weather'][0]['main']
@@ -121,6 +137,8 @@ function App() {
       <Fragment>
         <Container fluid className='d-flex background' style={{ backgroundImage: `url(/Clima-local/assets/background_images/${whichBackground(hour, whichTime(actualMain))}.jpg)` }}>
           <PrincipalCard
+            forecast={forecast}
+            date={date}
             day={day}
             hour={hour}
             minutes={minutes}
