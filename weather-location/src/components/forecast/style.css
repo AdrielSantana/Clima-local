@@ -9,6 +9,15 @@
 .modal-body{
     text-align: center;
 }
+
+.forecast-date{
+    font-size: 14px;
+}
+
+.btn-close{
+    color: white;
+}
+
 .modal-content {
     color: white;
     background: rgba(255, 255, 255, 0);
