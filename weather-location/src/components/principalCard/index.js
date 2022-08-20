@@ -28,7 +28,7 @@ function PrincipalCard(params) {
         <Fragment>
             <Card className='align-self-center mx-auto principal-card'>
                 <Card.Body className='align-items-center'>
-                    <p className="h1">Clima <img className="icon-cloud" src="/favicon.ico" alt="nuvem" /></p>
+                    <p className="h1">Clima <img className="icon-cloud" src="/Clima-local/favicon.ico" alt="nuvem" /></p>
                     <p> <img className="icon-actual" src={imgUrl(params.main)} alt="actual" /> {capitalizeFirstLetter(params.description)}</p>
                     <p> <Icon icon={'location'}/> <span className="fw-semibold fst-italic">{params.cityName}</span></p>
                     <p> <img className="icon" src="/Clima-local/assets/weather_images/clock.png" alt="clock" /> {params.hour}:{params.minutes}, {dayName[params.day]} </p>
