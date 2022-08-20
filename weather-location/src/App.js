@@ -50,6 +50,17 @@ function App() {
     return background
   }
 
+  const preBackgroud = (hour) => {
+    let nightBoolean = (hour < 5 || hour > 18)
+    let background = 'atmosfera'
+
+    if (nightBoolean) {
+      return 'noite/' + background
+    } else {
+      return 'dia/' + background
+    }
+  }
+
   const whichBackground = (hour, actualWeather) => {
     let nightBoolean = (hour < 5 || hour > 18)
 
@@ -78,7 +89,7 @@ function App() {
     let text = 'Permita a localização no navegador'
     return (
       <Fragment>
-        <Container fluid className='d-flex  background' style={{ backgroundImage: `url(/Clima-local/assets/background_images/${whichTime()}.jpg)` }}>
+        <Container fluid className='d-flex  background' style={{ backgroundImage: `url(/Clima-local/assets/background_images/${preBackgroud(hour)}.jpg)` }}>
           <PreCard
             text={text}
           />
@@ -88,7 +99,7 @@ function App() {
   } else if (!weather) {
     return (
       <Fragment>
-        <Container fluid className='d-flex justify-content-center  background' style={{ backgroundImage: `url(/Clima-local/assets/background_images/${whichTime()}.jpg)` }}>
+        <Container fluid className='d-flex justify-content-center  background' style={{ backgroundImage: `url(/Clima-local/assets/background_images/${preBackgroud(hour)}.jpg)` }}>
           <div class="loading lds-ellipsis"><div></div><div></div><div></div><div></div></div>
         </Container>
       </Fragment>
