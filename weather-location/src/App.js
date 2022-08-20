@@ -34,7 +34,7 @@ function App() {
     })
   }, [])
 
-  const whichBackground = (actualWeather) => {
+  const whichTime = (actualWeather) => {
     let background = 'atmosfera'
 
     if ((actualWeather === 'Rain') || (actualWeather === 'Drizzle')) {
@@ -50,11 +50,35 @@ function App() {
     return background
   }
 
+  const whichBackground = (hour, actualWeather) => {
+    let nightBoolean = (hour < 5 || hour > 18)
+    
+    if (nightBoolean) {
+      return 'noite/' + actualWeather
+    } else{
+      return 'dia/' + actualWeather
+    }
+  }
+
+  const now = new Date()
+
+  let day = now.getDay()
+  let hour = now.getHours()
+  let minutes = now.getMinutes()
+
+  if (hour < 10) {
+    hour = '0' + hour
+  }
+
+  if (minutes < 10) {
+    minutes = '0' + minutes
+  }
+
   if (!location) {
     let text = 'Permita a localização no navegador'
     return (
       <Fragment>
-        <Container fluid className='d-flex  background' style={{ backgroundImage: `url(Clima-local/assets/background_images/${whichBackground()}.jpg)` }}>
+        <Container fluid className='d-flex  background' style={{ backgroundImage: `url(Clima-local/assets/background_images/${whichTime()}.jpg)` }}>
           <PreCard
             text={text}
           />
@@ -64,8 +88,8 @@ function App() {
   } else if (!weather) {
     return (
       <Fragment>
-        <Container fluid className='d-flex justify-content-center  background' style={{ backgroundImage: `url(Clima-local/assets/background_images/${whichBackground()}.jpg)` }}>
-          <img className='loading align-self-center' src="./Clima-local/loading.gif" alt='loading'/>
+        <Container fluid className='d-flex justify-content-center  background' style={{ backgroundImage: `url(Clima-local/assets/background_images/${whichTime()}.jpg)` }}>
+          <img className='loading align-self-center' src="./Clima-local/loading.gif" alt='loading' />
         </Container>
       </Fragment>
     )
@@ -85,9 +109,12 @@ function App() {
 
     return (
       <Fragment>
-        <Container fluid className='d-flex background' style={{ backgroundImage: `url(Clima-local/assets/background_images/${whichBackground(actualMain)}.jpg)` }}>
+        <Container fluid className='d-flex background' style={{ backgroundImage: `url(Clima-local/assets/background_images/${whichBackground(hour, whichTime(actualMain))}.jpg)` }}>
           <PrincipalCard
-            main={whichBackground(actualMain)}
+            day={day}
+            hour={hour}
+            minutes={minutes}
+            main={whichTime(actualMain)}
             cityName={cityName}
             mesureDate={mesureDate}
             description={description}
