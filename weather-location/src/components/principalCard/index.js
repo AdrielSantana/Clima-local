@@ -16,10 +16,10 @@ function PrincipalCard(params) {
 
     const imgUrl = (main) => {
         
-        let url = `/assets/weather_images/cloud/${main}.png`
+        let url = `/Clima-local/assets/weather_images/cloud/${main}.png`
 
         if ((main === 'ensolarado') && (params.hour > 18 || params.hour < 5)){
-            url = `/assets/weather_images/cloud/noite.png`
+            url = `/Clima-local/assets/weather_images/cloud/noite.png`
         }
         return url
     }
@@ -31,7 +31,7 @@ function PrincipalCard(params) {
                     <p className="h1">Clima <img className="icon-cloud" src="/favicon.ico" alt="nuvem" /></p>
                     <p> <img className="icon-actual" src={imgUrl(params.main)} alt="actual" /> {capitalizeFirstLetter(params.description)}</p>
                     <p> <Icon icon={'location'}/> <span className="fw-semibold fst-italic">{params.cityName}</span></p>
-                    <p> <img className="icon" src="/assets/weather_images/clock.png" alt="clock" /> {params.hour}:{params.minutes}, {dayName[params.day]} </p>
+                    <p> <img className="icon" src="/Clima-local/assets/weather_images/clock.png" alt="clock" /> {params.hour}:{params.minutes}, {dayName[params.day]} </p>
                     <ListGroup className="list-info">
                         <ListGroup.Item>
                             <ListGroup>
@@ -40,7 +40,7 @@ function PrincipalCard(params) {
                                     aria-controls="temps"
                                     aria-expanded={open}
                                 >
-                                    <Icon icon={'termometro'}/> Temperatura atual: {params.actualTemp}° <img className="icon" src="/assets/weather_images/click.png" alt="click"/>
+                                    <Icon icon={'termometro'}/> Temperatura atual: {params.actualTemp}° <img className="icon" src="/Clima-local/assets/weather_images/click.png" alt="click"/>
                                 </button>
                                 <Collapse in={open}>
                                     <div id="temps">

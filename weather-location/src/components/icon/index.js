@@ -3,7 +3,7 @@ import './style.css'
 
 function Icon(params) {
     const imgUrl = (icon) => {
-        return `/assets/weather_images/${icon}.png`
+        return `/Clima-local/assets/weather_images/${icon}.png`
     }
 
     return (
