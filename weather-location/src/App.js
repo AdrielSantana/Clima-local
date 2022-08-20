@@ -52,10 +52,10 @@ function App() {
 
   const whichBackground = (hour, actualWeather) => {
     let nightBoolean = (hour < 5 || hour > 18)
-    
+
     if (nightBoolean) {
       return 'noite/' + actualWeather
-    } else{
+    } else {
       return 'dia/' + actualWeather
     }
   }
@@ -89,7 +89,7 @@ function App() {
     return (
       <Fragment>
         <Container fluid className='d-flex justify-content-center  background' style={{ backgroundImage: `url(/Clima-local/assets/background_images/${whichTime()}.jpg)` }}>
-          <img className='loading align-self-center' src="./Clima-local/loading.gif" alt='loading' />
+          <div class="loading lds-ellipsis"><div></div><div></div><div></div><div></div></div>
         </Container>
       </Fragment>
     )
